@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Core.hpp" />
+    <ClInclude Include="Core\SDLException.hpp" />
+    <ClInclude Include="prend.hpp" />
+    <ClInclude Include="Shared\Assert.hpp" />
+    <ClInclude Include="Shared\Console.hpp" />
+    <ClInclude Include="Shared\IO.hpp" />
+    <ClInclude Include="Shared\Logger\ConsoleLogger.hpp" />
+    <ClInclude Include="Shared\Logger\FileLogger.hpp" />
+    <ClInclude Include="Shared\Logger\ILogger.hpp" />
+    <ClInclude Include="Shared\Logger\Logger.hpp" />
+    <ClInclude Include="Shared\Logger\LogLevel.hpp" />
+    <ClInclude Include="Shared\Math.hpp" />
+    <ClInclude Include="Shared\Matrix.hpp" />
+    <ClInclude Include="Shared\Shared.hpp" />
+    <ClInclude Include="Shared\Vector.hpp" />
+    <ClInclude Include="Video\FBXImporter.hpp" />
+    <ClInclude Include="Video\GLEWException.hpp" />
+    <ClInclude Include="Video\Material.hpp" />
+    <ClInclude Include="Video\Model.hpp" />
+    <ClInclude Include="Video\PixelRect.hpp" />
+    <ClInclude Include="Video\Shader.hpp" />
+    <ClInclude Include="Video\Video.hpp" />
+    <ClInclude Include="Video\Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Core.cpp" />
+    <ClCompile Include="Shared\Console.cpp" />
+    <ClCompile Include="Shared\IO.cpp" />
+    <ClCompile Include="Shared\Logger\ConsoleLogger.cpp" />
+    <ClCompile Include="Shared\Logger\FileLogger.cpp" />
+    <ClCompile Include="Shared\Logger\Logger.cpp" />
+    <ClCompile Include="Video\FBXImporter.cpp" />
+    <ClCompile Include="Video\Material.cpp" />
+    <ClCompile Include="Video\Model.cpp" />
+    <ClCompile Include="Video\Shader.cpp" />
+    <ClCompile Include="Video\Video.cpp" />
+    <ClCompile Include="Video\Window.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{149B6697-B843-46C0-ABB8-302C630EA50D}</ProjectGuid>
+    <RootNamespace>prend</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>prend</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Platform)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)lib\$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Platform)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Platform)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Platform)\</IntDir>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)lib\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\SDL2-2.0.5\include;$(SolutionDir)lib\glew-2.1.0\include;$(SolutionDir)\lib\FBX SDK\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions />
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libfbxsdk-mt.lib</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>OpenGL32.lib;SDL2main.lib;SDL2.lib;glew32s.lib;glew32.lib;libfbxsdk-mt.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\FBX SDK\lib\debug\x86\;$(SolutionDir)lib\SDL2-2.0.5\lib\x86\;$(SolutionDir)lib\glew-2.1.0\lib\Release\x86\</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\SDL2-2.0.5\include;$(SolutionDir)lib\glew-2.1.0\include;$(SolutionDir)\lib\FBX SDK\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions />
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libfbxsdk-mt.lib</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>OpenGL32.lib;SDL2main.lib;SDL2.lib;glew32s.lib;glew32.lib;libfbxsdk-mt.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\FBX SDK\lib\debug\x64\;$(SolutionDir)lib\SDL2-2.0.5\lib\x64\;$(SolutionDir)lib\glew-2.1.0\lib\Release\x64\</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\SDL2-2.0.5\include;$(SolutionDir)lib\glew-2.1.0\include;$(SolutionDir)\lib\FBX SDK\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions />
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libfbxsdk-mt.lib</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>OpenGL32.lib;SDL2main.lib;SDL2.lib;glew32s.lib;glew32.lib;libfbxsdk-mt.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\FBX SDK\lib\release\x86\;$(SolutionDir)lib\SDL2-2.0.5\lib\x86\;$(SolutionDir)lib\glew-2.1.0\lib\Release\x86\</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\SDL2-2.0.5\include;$(SolutionDir)lib\glew-2.1.0\include;$(SolutionDir)\lib\FBX SDK\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions />
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libfbxsdk-mt.lib</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>OpenGL32.lib;SDL2main.lib;SDL2.lib;glew32s.lib;glew32.lib;libfbxsdk-mt.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\FBX SDK\lib\release\x64\;$(SolutionDir)lib\SDL2-2.0.5\lib\x64\;$(SolutionDir)lib\glew-2.1.0\lib\Release\x64\</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

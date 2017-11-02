@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{1e06bc44-447f-4108-9fbd-2fedb4da3651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared">
+      <UniqueIdentifier>{839a93cf-301c-4aec-ba85-4c79066db98c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Video">
+      <UniqueIdentifier>{3de8a1ee-5661-4ea6-9f31-8debbd907dc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{5480bdd0-2f8c-4f74-86b7-8b2deb34aee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shared">
+      <UniqueIdentifier>{eaa6d88b-86f8-4a97-9132-8a709006b893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Video">
+      <UniqueIdentifier>{3fbcc10f-9895-449e-8a41-4c3aa5e55ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\Logger">
+      <UniqueIdentifier>{fb459317-9e0c-4dbd-83d0-a671d3e1c082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shared\Logger">
+      <UniqueIdentifier>{b067dcec-4e31-4427-98a2-fc44f2f362aa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Core.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SDLException.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Console.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\IO.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Math.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Matrix.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Shared.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Vector.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Assert.hpp">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Logger\ConsoleLogger.hpp">
+      <Filter>Header Files\Shared\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Logger\FileLogger.hpp">
+      <Filter>Header Files\Shared\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Logger\ILogger.hpp">
+      <Filter>Header Files\Shared\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Logger\Logger.hpp">
+      <Filter>Header Files\Shared\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\Logger\LogLevel.hpp">
+      <Filter>Header Files\Shared\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\FBXImporter.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GLEWException.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Material.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Model.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\PixelRect.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Shader.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Video.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Window.hpp">
+      <Filter>Header Files\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="prend.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Core.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Console.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\IO.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Logger\ConsoleLogger.cpp">
+      <Filter>Source Files\Shared\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Logger\FileLogger.cpp">
+      <Filter>Source Files\Shared\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Shared\Logger\Logger.cpp">
+      <Filter>Source Files\Shared\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\FBXImporter.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Material.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Model.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Shader.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Video.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Window.cpp">
+      <Filter>Source Files\Video</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
