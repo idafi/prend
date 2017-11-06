@@ -4,7 +4,7 @@ A really basic OpenGL 3D renderer, written in object-oriented C++. It's just a l
 I'm building this loosely alongside [this excellent tutorial](http://opengl.datenwolf.net/gltut/html/index.html), although the vast majority of my code differs strongly from the example structure. (FBX importing isn't in the tutorial at all, for example.)
 
 The short-term goals:
-- Load vertex position and color data from Autodesk FBX format (partially done)
+- Load vertex position and color data from Autodesk FBX format (mostly done)
 - Get this model data into VRAM through OpenGL (done)
 - Load GLSL shader code to apply to those models (done)
 - Handle perspective and other TRS matrix operations (done)

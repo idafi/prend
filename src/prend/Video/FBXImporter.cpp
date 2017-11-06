@@ -33,22 +33,16 @@ namespace Video
 			FbxMesh *mesh = FindMesh(scene->GetRootNode());
 			if(mesh)
 			{
-				int posCount;
-				int colCount;
-				int idxCount;
+				// get counts
+				int vertexCount = mesh->GetControlPointsCount();
+				int indexCount = mesh->GetPolygonVertexCount();
 				
-				float *pos = GetPositions(mesh, &posCount);
-				float *col = GetColors(mesh, &colCount);
-				uint16 *idx = GetIndices(mesh, &idxCount);
-				
-				// make sure we didn't get more color data than position data
-				if(posCount != colCount)
-				{
-					LogWarning("vertex position count (%i) does not match vertex color count (%i)", posCount, colCount);
-					posCount = min(posCount, colCount);
-				}
-				
-				data = new ModelData(pos, col, colCount, idx, idxCount);
+				// get vertex data
+				float *positions = GetPositions(mesh, vertexCount);
+				uint16 *indices = GetIndices(mesh, indexCount);
+				float *colors = GetColors(mesh, indices, indexCount, vertexCount);
+
+				data = new ModelData(positions, colors, vertexCount, indices, indexCount);
 			}
 			else
 			{ LogError("failed to import FBX file\n\tno meshes found"); }
@@ -84,79 +78,57 @@ namespace Video
 		return NULL;
 	}
 	
-	float *FBXImporter::GetPositions(const FbxMesh * const mesh, int *count)
+	float *FBXImporter::GetPositions(const FbxMesh * const mesh, int vertexCount)
 	{
-		int posCount = mesh->GetControlPointsCount();		// position count
-		FbxVector4 *fbxPoints = mesh->GetControlPoints();	// position vectors
-		float *positions = new float[posCount * 3];			// we'll pack them into a GL-friendly float array
-		
-		for(int i = 0; i < posCount; i++)
+		FbxVector4 *fbxPositions = mesh->GetControlPoints();	// source positions
+		float *positions = new float[vertexCount * 3];			// we convert to float array and discard the w component
+
+		// convert
+		for(int i = 0; i < vertexCount; i++)
 		{
-			// pack 3d vector data into the float array
-			// (we don't care about the w coordinate in this case)
-			FbxVector4 fbxPoint = fbxPoints[i];
+			FbxVector4 fbxPoint = fbxPositions[i];
 			int baseIndex = i * 3;
 			positions[baseIndex] = (float)(fbxPoint[0]);
 			positions[baseIndex + 1] = (float)(fbxPoint[1]);
 			positions[baseIndex + 2] = (float)(fbxPoint[2]);
 		}
-		
-		*count = posCount;
+
 		return positions;
 	}
 	
-	float *FBXImporter::GetColors(FbxMesh * const mesh, int *count)
+	uint16 *FBXImporter::GetIndices(const FbxMesh * const mesh, int indexCount)
 	{
-		FbxGeometryElementVertexColor *vertexColor = mesh->GetElementVertexColor();
-		
-		// try to remap any vertex color setup beyond 1 color per vertex
-		int result = vertexColor->RemapIndexTo(FbxLayerElement::eByControlPoint);
-		switch(result)
+		int *fbxIndices = mesh->GetPolygonVertices();	// source indices
+		uint16 *indices = new uint16[indexCount];		// we can just copy these directly
+
+		// copy
+		for(int v = 0; v < indexCount; v++)
+		{ indices[v] = fbxIndices[v]; }
+
+		return indices;
+	}
+
+	float *FBXImporter::GetColors(const FbxMesh * const mesh, uint16 *indices, int indexCount, int vertexCount)
+	{
+		const FbxGeometryElementVertexColor *colorElement = mesh->GetElementVertexColor();
+		float *colors = new float[vertexCount * 4];
+
+		for(int i = 0; i < indexCount; i++)
 		{
-			case 1:
-				LogNote("successfully remapped vertex colors");
-				break;
-			case 0:
-				LogError("error remapping vertex colors");
-				break;
-			case -1:
-				LogError("impossible to remap vertex colors");	// we really should figure out multi-color vertices, though
-				break;
+			int index = indices[i];
+
+			// the source color is grabbed directly from each source vertex...
+			int colorIndex = colorElement->GetIndexArray().GetAt(i);
+			FbxColor fbxCol = colorElement->GetDirectArray().GetAt(colorIndex);
+
+			// ...but it's mapped to a specific destination vertex via the vertex's array index
+			int baseI = index * 4;
+			colors[baseI] = (float)(fbxCol.mRed);
+			colors[baseI + 1] = (float)(fbxCol.mGreen);
+			colors[baseI + 2] = (float)(fbxCol.mBlue);
+			colors[baseI + 3] = (float)(fbxCol.mAlpha);
 		}
 
-		FbxLayerElementArrayTemplate<int>& indices = vertexColor->GetIndexArray();		// color array indices
-		FbxLayerElementArrayTemplate<FbxColor>& array = vertexColor->GetDirectArray();	// color array
-		int colorCount = indices.GetCount();		// color count
-		float *colors = new float[colorCount * 4];	// we'll pack them into a GL-friendly float array
-		
-		for(int i = 0; i < colorCount; i++)
-		{
-			// get the color corresponding to this color index
-			int index = indices[i];
-			FbxColor color = array[index];
-			int baseIndex = i * 4;
-			
-			// pack it
-			colors[baseIndex] = (float)(color.mRed);
-			colors[baseIndex + 1] = (float)(color.mGreen);
-			colors[baseIndex + 2] = (float)(color.mBlue);
-			colors[baseIndex + 3] = (float)(color.mAlpha);
-		}
-		
-		*count = colorCount;
 		return colors;
-	}
-	
-	uint16 *FBXImporter::GetIndices(const FbxMesh * const mesh, int *count)
-	{
-		int indexCount = mesh->GetPolygonVertexCount();
-		int *indices = mesh->GetPolygonVertices();
-		
-		uint16 *outIndices = new uint16[indexCount];
-		for(int i = 0; i < indexCount; i++)
-		{ outIndices[i] = (uint16)(indices[i]); }
-		
-		*count = indexCount;
-		return outIndices;
 	}
 }

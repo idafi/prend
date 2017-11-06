@@ -22,8 +22,8 @@ namespace Video
 			FbxImporter *importer;
 			
 			FbxMesh *FindMesh(FbxNode * const rootNode);
-			float *GetPositions(const FbxMesh * const mesh, int *count);
-			float *GetColors(FbxMesh * const mesh, int *count);
-			uint16 *GetIndices(const FbxMesh * const mesh, int *count);
+			float *GetPositions(const FbxMesh * const mesh, int vertexCount);
+			uint16 *GetIndices(const FbxMesh * const mesh, int indexCount);
+			float *GetColors(const FbxMesh * const mesh, uint16 *indices, int indexCount, int vertexCount);
 	};
 }
