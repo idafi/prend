@@ -27,21 +27,35 @@ namespace Video
 		
 		if(importer->Initialize(filePath, -1, fbxMan->GetIOSettings()))
 		{
+			// import the scene
 			FbxScene *scene = FbxScene::Create(fbxMan, "scene");
 			importer->Import(scene);
-			
+
+			// don't do anything else until a mesh is located
 			FbxMesh *mesh = FindMesh(scene->GetRootNode());
 			if(mesh)
 			{
+				// convert to y-up/z-forward/right-hand axis system
+				FbxAxisSystem sys(FbxAxisSystem::OpenGL);
+				sys.ConvertScene(scene);
+
+				// convert to meter-based unit system
+				FbxSystemUnit::m.ConvertScene(scene);
+
+				// get transform to apply to mesh vertex positions
+				FbxNode *node = mesh->GetNode();
+				FbxAMatrix mat = node->EvaluateGlobalTransform();
+
 				// get counts
 				int vertexCount = mesh->GetControlPointsCount();
 				int indexCount = mesh->GetPolygonVertexCount();
 				
 				// get vertex data
-				float *positions = GetPositions(mesh, vertexCount);
+				float *positions = GetPositions(mesh, vertexCount, mat);
 				uint16 *indices = GetIndices(mesh, indexCount);
 				float *colors = GetColors(mesh, indices, indexCount, vertexCount);
 
+				// done
 				data = new ModelData(positions, colors, vertexCount, indices, indexCount);
 			}
 			else
@@ -78,7 +92,7 @@ namespace Video
 		return NULL;
 	}
 	
-	float *FBXImporter::GetPositions(const FbxMesh * const mesh, int vertexCount)
+	float *FBXImporter::GetPositions(const FbxMesh * const mesh, int vertexCount, const FbxAMatrix& transform)
 	{
 		FbxVector4 *fbxPositions = mesh->GetControlPoints();	// source positions
 		float *positions = new float[vertexCount * 3];			// we convert to float array and discard the w component
@@ -86,7 +100,10 @@ namespace Video
 		// convert
 		for(int i = 0; i < vertexCount; i++)
 		{
+			// apply node transform
 			FbxVector4 fbxPoint = fbxPositions[i];
+			fbxPoint = transform.MultT(fbxPoint);
+
 			int baseIndex = i * 3;
 			positions[baseIndex] = (float)(fbxPoint[0]);
 			positions[baseIndex + 1] = (float)(fbxPoint[1]);
